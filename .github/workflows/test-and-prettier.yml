@@ -1,9 +1,14 @@
 name: Test and run Prettier
-on: [pull_request]
-jobs:
-  build:
-    runs-on: ubuntu-latest
 
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs: 
+  unit-tests:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -11,11 +16,36 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Test, Prettier and Build
+      - name: Test and run Prettier
         run: |
           npm ci
           npm run unit-tests
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      - name: Test and run Prettier
+        run: |
+          npm ci
           npm run integration-tests
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      - name: Test and run Prettier
+        run: |
+          npm ci
           npm run prettier
-          npm run build
 
