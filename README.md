@@ -67,3 +67,5 @@ This project uses [flat-cache](https://www.npmjs.com/package/flat-cache) for loc
 - implement more robust cache mechanism
 - provide better overall docs
 - increase the amount of information returned from the bundled calls (currently only returns the `name` and `id` from the SWAPI records)
+
+test verify
